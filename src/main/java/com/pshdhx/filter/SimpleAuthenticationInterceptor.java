@@ -11,8 +11,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
- * 实现授权拦截器【判断用户的权限】
+ * 实现授权拦截器【判断用户的权限，注意是授权，热不是认证】
  */
+//配置了security，拦截器还拦截吗？好像不拦截了
 //@Component
 public class SimpleAuthenticationInterceptor implements HandlerInterceptor {
     @Override

@@ -14,8 +14,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 /**
- *它对应于DispatcherServlet配置
  *
+ * spring- mvc.xml
+ *它对应于DispatcherServlet配置==spring- mvc.xml
  * WebConfig.class对应以下配置的spring- mvc.xml，【servlet/servlet-name;springmvc
  *                                                        servlet-class:org.springframework.web.servlet.DispatcherServlet
  *                                                init-param/param-name:contextConfigLocation
@@ -29,8 +30,9 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
         ,includeFilters = {@ComponentScan.Filter(type = FilterType.ANNOTATION,value = Controller.class)})
 public class WebConfig implements WebMvcConfigurer {
 
-    @Autowired
-    private SimpleAuthenticationInterceptor simpleAuthenticationInterceptor;
+    //拦截用户的请求【security来控制，不用web容器来控制了】
+//    @Autowired
+//    private SimpleAuthenticationInterceptor simpleAuthenticationInterceptor;
 
 
 
@@ -46,14 +48,14 @@ public class WebConfig implements WebMvcConfigurer {
     //视图解析器 定向到 psdLogin.jsp
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("psdLogin");
+        registry.addViewController("/").setViewName("redirect:/login");
     }
 
-    //拦截用户的请求
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(simpleAuthenticationInterceptor).addPathPatterns("/r/**");
-    }
+    //拦截用户的请求【security来控制，不用web容器来控制了】
+//    @Override
+//    public void addInterceptors(InterceptorRegistry registry) {
+//        registry.addInterceptor(simpleAuthenticationInterceptor).addPathPatterns("/r/**");
+//    }
 
 
 }
